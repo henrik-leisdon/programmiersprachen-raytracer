@@ -1,9 +1,9 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include <external/glm-0.9.5.3/glm/vec3.hpp>
+#include <glm/vec3.hpp>
 #include <math.h>
-#include "framework/color.hpp"
+#include "color.hpp"
 #include <string.h>
 
 class Shape

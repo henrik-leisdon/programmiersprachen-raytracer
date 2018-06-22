@@ -1,4 +1,4 @@
-#include "framework/shape.hpp"
+#include "shape.hpp"
 
 Shape::Shape():
     name_{"noObject"},
