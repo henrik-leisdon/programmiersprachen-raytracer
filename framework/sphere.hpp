@@ -1,6 +1,7 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
+#include "ray.hpp"
 #include "shape.hpp"
 #include <glm/vec3.hpp>
 
@@ -10,11 +11,18 @@ class Sphere : public Shape
         Sphere();
         Sphere(glm::vec3 const& spMid, double spRadius, std::string name, Color color);
 
+        ~Sphere();
+
         glm::vec3 getSpMid() const;
         double getSpRadius() const;
 
         double area() const override;
         double volume() const override;
+
+        std::ostream& print (std::ostream& os ) const override;
+
+        bool intersect(Ray const& ray, float distance) const;
+
 
     private:
         glm::vec3 spMid_;

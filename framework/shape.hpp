@@ -12,12 +12,15 @@ class Shape
         Shape();
         Shape(std::string name, Color const& color);
 
+        ~Shape();
+
         std::string getName() const;
         Color getColor() const;
 
         virtual double area() const = 0;
         virtual double volume() const = 0;
 
+        virtual std::ostream& print (std::ostream& os) const;
 
 
         private:
@@ -26,4 +29,5 @@ class Shape
 
 };
 
+std::ostream& operator <<(std::ostream& os, Shape const& s);
 #endif
