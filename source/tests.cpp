@@ -53,10 +53,45 @@ auto result = glm::intersectRaySphere(ray_origin, ray_direction,sphere_center, s
 distance);
 REQUIRE(distance == Approx(4.0f));
 
+//custom sp:
+
+glm::vec3 mid(0.0,0.0,5.0);
+double rad(1.0);
+Color clr(1.0f,0.0f,0.0f);
+Sphere sp{mid,rad,"sp1",clr};
+
+float dist = 0.0f;
+REQUIRE(!sp.intersect(Ray{},distance));
+REQUIRE(distance == Approx(4.0f));
+
+glm::vec3 mid2{0.0,0.0,-5.0};
+double rad2(1.0);
+Sphere sp2{mid2,rad,"sp2",clr};
+
+REQUIRE(sp2.intersect(Ray{},distance));
+
 
 }
 
+
+
+
 TEST_CASE("deconstuctor")
+{
+  std::cout << "===============================\n";
+  Color red{255,0,0};
+
+  glm::vec3 position {0.0,0.0 ,0.0};
+  Sphere* s1 = new Sphere{position,1.2f,"sphere0", red};
+  Shape* s2 = new Sphere{position,1.2f,"sphere1",red};
+  
+  s1-> print(std::cout);
+  s2-> print(std::cout);
+
+  delete s1;
+  delete s2;
+
+}
 
 
 
