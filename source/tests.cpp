@@ -51,7 +51,7 @@ float sphere_radius{1.0f};
 float distance = 0.0f;
 auto result = glm::intersectRaySphere(ray_origin, ray_direction,sphere_center, sphere_radius * sphere_radius, // squared radius !!!
 distance);
-REQUIRE(distance == Approx(4.0f));
+REQUIRE(distance == Approx(4.0f)); //normalisiere
 
 //custom sp:
 

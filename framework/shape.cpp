@@ -1,7 +1,7 @@
 #include "shape.hpp"
 
 Shape::Shape():
-    name_{"noObject"},
+    name_{"no_Object"},
     color_{0.0,0.0,0.0}
     {std::cout << "base constructor \n ";};
 
