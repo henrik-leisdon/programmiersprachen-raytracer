@@ -17,6 +17,8 @@ class Box : public Shape
         double area() const override;
         double volume() const override;
 
+        bool intersect ( Ray const & ray , float & t ) override; //override pure virtual intersect function from shape 
+
         std::ostream& print(std::ostream& os) const override;
 
 

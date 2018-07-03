@@ -19,6 +19,8 @@ class Sphere : public Shape
         double area() const override;
         double volume() const override;
 
+        
+
         std::ostream& print (std::ostream& os ) const override;
 
         bool intersect(Ray const& ray, float& distance) const;

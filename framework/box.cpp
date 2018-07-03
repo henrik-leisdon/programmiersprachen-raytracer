@@ -42,6 +42,210 @@ double Box::volume() const
 }
 
 
+bool Box::intersect ( Ray const & ray , float & t )
+{
+    auto origin = ray.origin;
+    auto direction = ray.direction; 
+    bool intersect = false;
+    auto cam_dist = -1;
+
+    if(direction.x!=0)
+    {
+        auto t1 = (boxMin_.x-origin.x)/direction.x;  //get t for x min
+        auto t2 = (boxMax_.x-origin.x)/direction.x;  //get t for x max
+
+        auto i1 = origin+t1*direction;               //intersection point with x
+        auto i2 = origin+t2*direction;
+
+        bool hitp1 = false;                         //hitpoint?
+        bool hitp2 = false;
+        if(i1.x>boxMin_.y && i1.x<boxMax_.y && i1.x>boxMin_.z && i1.x<boxMax_.z)  //test if the hitpoint is in range from yz level
+        {
+            hitp1 = true;
+        }
+        if(i2.x>boxMin_.y && i2.x<boxMax_.y && i2.x>boxMin_.z && i2.x<boxMax_.z)
+        {
+            hitp2 = true;
+        }
+
+        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
+        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+
+        if(hitp1 == true && hitp2 == true)
+        {
+            if(distance1<distance2)
+            {
+                if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+                else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+            }
+            else if(distance2<distance1)
+            {
+                if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+                else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+            }    
+            intersect = true;
+        }
+        if(hitp1 == true && hitp2 ==false)
+        {
+            if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+        }
+        if(hitp1 ==false && hitp2 == true)
+        {
+             if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+        }
+    }
+
+    if(direction.y!=0)
+    {
+        auto t1 = (boxMin_.y-origin.y)/direction.y;  //get t for x min
+        auto t2 = (boxMax_.y-origin.y)/direction.y;  //get t for x max
+
+        auto i1 = origin+t1*direction;               //intersection point with x
+        auto i2 = origin+t2*direction;
+
+        bool hitp1 = false;                         //hitpoint?
+        bool hitp2 = false;
+        if(i1.y>boxMin_.x && i1.y<boxMax_.x && i1.y>boxMin_.z && i1.y<boxMax_.z)  //test if the hitpoint is in range from yz level
+        {
+            hitp1 = true;
+        }
+        if(i2.y>boxMin_.x && i2.y<boxMax_.x && i2.y>boxMin_.z && i2.y<boxMax_.z)
+        {
+            hitp2 = true;
+        }
+
+        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
+        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+
+        if(hitp1 == true && hitp2 == true)
+        {
+            if(distance1<distance2)
+            {
+                if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+                else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+            }
+            else if(distance2<distance1)
+            {
+                if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+                else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+            }    
+            intersect = true;
+        }
+        if(hitp1 == true && hitp2 ==false)
+        {
+            if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+        }
+        if(hitp1 ==false && hitp2 == true)
+        {
+             if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+        }
+    }
+
+    if(direction.z!=0)
+    {
+        auto t1 = (boxMin_.z-origin.z)/direction.z;  
+        auto t2 = (boxMax_.z-origin.z)/direction.z; 
+
+        auto i1 = origin+t1*direction;              
+        auto i2 = origin+t2*direction;
+
+        bool hitp1 = false;                         
+        bool hitp2 = false;
+        if(i1.z>boxMin_.y && i1.z<boxMax_.y && i1.z>boxMin_.x && i1.z<boxMax_.x)  
+        {
+            hitp1 = true;
+        }
+        if(i2.z>boxMin_.y && i2.z<boxMax_.y && i2.z>boxMin_.x && i2.z<boxMax_.x)
+        {
+            hitp2 = true;
+        }
+
+        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
+        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+
+        if(hitp1 == true && hitp2 == true)
+        {
+            if(distance1<distance2)
+            {
+                if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+                else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+            }
+            else if(distance2<distance1)
+            {
+                if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+                else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+            }    
+            intersect = true;
+        }
+        if(hitp1 == true && hitp2 ==false)
+        {
+            if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance1;
+                }
+        }
+        if(hitp1 ==false && hitp2 == true)
+        {
+             if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                {
+                    cam_dist=distance2;
+                }
+        }
+    }
+    t = cam_dist;
+    return intersect;
+    
+}
+
+
 std::ostream& Box::print(std::ostream& os) const
 {
     os  << "area: " << area() <<"\n"
