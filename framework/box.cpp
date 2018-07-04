@@ -6,8 +6,8 @@ Box::Box():
     boxMax_({0.0,0.0,0.0})
     {std::cout << "b child default constructor \n ";};
 
-Box::Box(std::string name, glm::vec3 const& boxMin, glm::vec3 const& boxMax, Color color):
-    Shape{name,color},
+Box::Box(std::string name, glm::vec3 const& boxMin, glm::vec3 const& boxMax, std::shared_ptr<Material> material):
+    Shape{name, material},
     boxMin_{boxMin},
     boxMax_{boxMax}
     {std::cout << "b child copy constructor \n ";};
