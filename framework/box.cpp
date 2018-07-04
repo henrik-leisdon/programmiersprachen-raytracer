@@ -125,7 +125,7 @@ bool Box::intersect ( Ray const & ray , float & t )
         bool hitp2 = false;
         if(i1.y>boxMin_.x && i1.y<boxMax_.x && i1.y>boxMin_.z && i1.y<boxMax_.z)  //test if the hitpoint is in range from yz level
         {
-            hitp1 = true;
+            hitp1 = true; //hit
         }
         if(i2.y>boxMin_.x && i2.y<boxMax_.x && i2.y>boxMin_.z && i2.y<boxMax_.z)
         {
@@ -135,9 +135,9 @@ bool Box::intersect ( Ray const & ray , float & t )
         auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
         auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
 
-        if(hitp1 == true && hitp2 == true)
+        if(hitp1 == true && hitp2 == true) //if the ray goes through the box
         {
-            if(distance1<distance2)
+            if(distance1<distance2) //check distance between camera/origin and hitpoint
             {
                 if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
@@ -196,8 +196,8 @@ bool Box::intersect ( Ray const & ray , float & t )
             hitp2 = true;
         }
 
-        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
-        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); 
+        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); 
 
         if(hitp1 == true && hitp2 == true)
         {
