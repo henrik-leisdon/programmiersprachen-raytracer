@@ -8,8 +8,8 @@ Sphere::Sphere():
     spRadius_{0.0}
     {std::cout << "sp child default constructor \n ";};
 
-Sphere::Sphere(glm::vec3 const& spMid, double spRadius, std::string name, Color color):
-    Shape(name, color),
+Sphere::Sphere(glm::vec3 const& spMid, double spRadius, std::string name, std::shared_ptr<Material> material):
+    Shape(name, material),
     spMid_{spMid},
     spRadius_{spRadius}
     {std::cout << "sp child copy constructor \n ";};
