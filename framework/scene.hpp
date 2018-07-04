@@ -12,16 +12,13 @@
 
 struct Scene
 {
-std::vector<std::shared_ptr<Material>> material_vec;
-std::set<std::shared_ptr<Material>> material_set;
-std::map <std::string,std::shared_ptr< Material>> material_map;
+    std::map <std::string,std::shared_ptr< Material>> material_map;
 };
 
 void read_SDF(std::string const& path, Scene scene)
 {
     std::ifstream file(path);
     std::string line;
-   // std::vector<Material> temp_mat;
     
     if(!file.is_open())
     {
@@ -63,7 +60,7 @@ void read_SDF(std::string const& path, Scene scene)
 
                 std::shared_ptr<Material>matp = std::make_shared<Material>(mat);
 
-        scene.material_vec.push_back(matp);
+        scene.material_map.insert(std::pair<std::string,std::shared_ptr<Material>> (matp->name_,matp));
         }
         
     }

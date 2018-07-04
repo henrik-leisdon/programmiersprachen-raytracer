@@ -36,17 +36,20 @@ struct Material
     float m_; /* Phong-exponent needed for the intensity of the specular reflection, 
                 specular = direct reflection of the light source*/
 
-
-};
-
     //Streamoperator to print
-    ostream& operator << (ostream& ost, Material const& mate){
+    friend std::ostream& operator << (ostream& ost, Material const& mate)
+    {
         ost << "name : " << mate.name_ << '\n';
         ost << "ambient : " << mate.ka_ << '\n';
         ost << "diffuse : " << mate.kd_ << '\n'; 
         ost << "specular : " << mate.ks_ << '\n';
         return ost; 
     }
+
+
+};
+
+
 
 
 #endif 

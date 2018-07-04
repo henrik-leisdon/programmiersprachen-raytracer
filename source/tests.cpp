@@ -1,22 +1,21 @@
-#define CATCH_CONFIG_RUNNER
 
+#define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
-
 #include <memory>
-
 #include "../framework/sphere.hpp"
 #include "../framework/box.hpp"
 #include "../framework/color.hpp"
 #include "../framework/scene.hpp"
 #include "../framework/material.hpp"
 
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
 }
-
 
 TEST_CASE("aufgabe 2 test")
 {
@@ -107,6 +106,7 @@ TEST_CASE("de/constuctor")
   delete s2;
 
 }
+
 
 
 
