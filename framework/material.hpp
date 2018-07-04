@@ -16,7 +16,7 @@ struct Material
         ka_({0.0f, 0.0f, 0.0f}),
         kd_({0.0f, 0.0f, 0.0f}),
         ks_({0.0f, 0.0f, 0.0f}),
-        m_(0.0f),
+        m_(0.0f)
         {}
 
     //Costum Constructor
@@ -25,7 +25,7 @@ struct Material
         ka_(ka),
         kd_(kd),
         ks_(ks),
-        m_(m),
+        m_(m)
         {}   
 
     string name_;
@@ -36,6 +36,9 @@ struct Material
     float m_; /* Phong-exponent needed for the intensity of the specular reflection, 
                 specular = direct reflection of the light source*/
 
+
+};
+
     //Streamoperator to print
     ostream& operator << (ostream& ost, Material const& mate){
         ost << "name : " << mate.name_ << '\n';
@@ -44,7 +47,6 @@ struct Material
         ost << "specular : " << mate.ks_ << '\n';
         return ost; 
     }
-};
 
 
 #endif 

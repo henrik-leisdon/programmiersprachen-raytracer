@@ -2,6 +2,7 @@
 #define BOX_HPP
 
 #include <glm/vec3.hpp>
+#include <memory>
 #include "shape.hpp"
 
 class Box : public Shape

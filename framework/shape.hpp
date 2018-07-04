@@ -1,6 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
+#include <memory>
 #include <glm/vec3.hpp>
 #include <math.h>
 #include "color.hpp"
