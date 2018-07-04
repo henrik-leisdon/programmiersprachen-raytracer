@@ -1,14 +1,18 @@
 #include "shape.hpp"
 
 Shape::Shape():
-    name_{"no_Object"},
-    material_{0.0,0.0,0.0},
-    {std::cout << "base constructor \n ";};
+    name_{"no_Object"}
+    //material_{0.0,0.0,0.0}
+    {
+        std::cout << "base constructor \n ";
+    };
 
 Shape::Shape(std::string name, std::shared_ptr<Material> const& material):
     name_{name},
-    material_{material},
-    {std::cout << "base copy constructor \n ";};
+    material_{material}
+    {
+        std::cout << "base copy constructor \n ";
+    };
 
 Shape::~Shape()
 {

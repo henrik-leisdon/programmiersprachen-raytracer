@@ -17,11 +17,11 @@ std::set<std::shared_ptr<Material>> material_set;
 std::map <std::string,std::shared_ptr< Material>> material_map;
 };
 
-void read_SDF(std::string const& path, Scene const& scene)
+void read_SDF(std::string const& path, Scene scene)
 {
     std::ifstream file(path);
     std::string line;
-    std::vector<Material> temp_mat;
+   // std::vector<Material> temp_mat;
     
     if(!file.is_open())
     {
@@ -64,16 +64,15 @@ void read_SDF(std::string const& path, Scene const& scene)
                 std::shared_ptr<Material>matp = std::make_shared<Material>(mat);
 
         scene.material_vec.push_back(matp);
-            }
         }
         
     }
 
-    for(int i=0;i<temp_mat.size();i++)
+   /* for(int i=0;i<temp_mat.size();i++)
     {
         scene.material_vec.push_back(temp_mat[i]);
     }    
-
+*/
 
     
     file.close();
