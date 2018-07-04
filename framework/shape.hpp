@@ -6,17 +6,18 @@
 #include "color.hpp"
 #include <string.h>
 #include "ray.hpp"
+#include "material.hpp"
 
 class Shape
 {
     public:
         Shape();
-        Shape(std::string name, Color const& color);
+        Shape(std::string name, std::shared_ptr<Material> const& material);
 
         ~Shape();
 
         std::string getName() const;
-        Color getColor() const;
+        std::shared_ptr<Material> getMaterial() const;
 
         virtual double area() const = 0;
         virtual double volume() const = 0;
@@ -28,7 +29,7 @@ class Shape
 
         private:
         std::string name_;
-        Color color_;      
+        std::shared_ptr<Material> material_;     
 
 };
 

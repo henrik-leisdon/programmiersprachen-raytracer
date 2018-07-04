@@ -2,12 +2,12 @@
 
 Shape::Shape():
     name_{"no_Object"},
-    color_{0.0,0.0,0.0}
+    material_{0.0,0.0,0.0},
     {std::cout << "base constructor \n ";};
 
-Shape::Shape(std::string name, Color const& color):
+Shape::Shape(std::string name, std::shared_ptr<Material> const& material):
     name_{name},
-    color_{color}
+    material_{material},
     {std::cout << "base copy constructor \n ";};
 
 Shape::~Shape()
@@ -20,15 +20,15 @@ std::string Shape::getName() const
     return name_;
 }
 
-Color Shape::getColor() const
+std::shared_ptr<Material> Shape::getMaterial() const
 {
-    return color_;
+    return material_;
 }
 
 std::ostream& Shape::print(std::ostream& os) const
 {
     os << "name: " << name_ << "\n"
-       << "color: " << color_ <<"\n";
+       << "material: " << *material_ <<"\n";
     return os;
 }
 
