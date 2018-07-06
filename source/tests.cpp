@@ -86,9 +86,6 @@ TEST_CASE("intersect_ray_sphere", "[intersect]")
 
 }
 
-
-
-
 TEST_CASE("de/constuctor")
 {
   std::cout << "===============================\n";
@@ -104,6 +101,11 @@ TEST_CASE("de/constuctor")
 
   delete s1;
   delete s2;
+
+}
+
+TEST_CASE("read scene")
+{
 
 }
 
