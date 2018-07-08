@@ -150,7 +150,15 @@ TEST_CASE("Testing Box")
   }
 }
 
+TEST_CASE("read sdf")
+{
+  std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+  read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*scene);
+  std::cout << "material green: " << find_material("green", *scene) << "\n";
 
+  REQUIRE(find_material("pink",*scene) == nullptr);
+
+}
 
 
 
