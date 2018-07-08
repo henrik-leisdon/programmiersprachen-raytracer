@@ -1,20 +1,24 @@
 #include "box.hpp"
 
+//#include <glm/gtx/norm.hpp>
+
 Box::Box():
     Shape(),
     boxMin_({0.0,0.0,0.0}),
     boxMax_({0.0,0.0,0.0})
-    {std::cout << "b child default constructor \n ";};
+    {//std::cout << "b child default constructor \n ";
+    };
 
 Box::Box(std::string name, glm::vec3 const& boxMin, glm::vec3 const& boxMax, std::shared_ptr<Material> material):
     Shape{name, material},
     boxMin_{boxMin},
     boxMax_{boxMax}
-    {std::cout << "b child copy constructor \n ";};
+    {//std::cout << "b child copy constructor \n ";
+    };
 
 Box::~Box()
 {
-    std::cout << "b child deconstructor \n ";
+    //std::cout << "b child deconstructor \n ";
 };
 
 glm::vec3 Box::getBoxMin()
@@ -59,19 +63,21 @@ bool Box::intersect ( Ray const & ray , float & t )
 
         bool hitp1 = false;                         //hitpoint?
         bool hitp2 = false;
-        if(i1.x>boxMin_.y && i1.x<boxMax_.y && i1.x>boxMin_.z && i1.x<boxMax_.z)  //test if the hitpoint is in range from yz level
+        if(i1.y>boxMin_.y && i1.y<boxMax_.y && i1.z>boxMin_.z && i1.z<boxMax_.z)  //test if the hitpoint is in range from yz level
         {
             hitp1 = true;
         }
-        if(i2.x>boxMin_.y && i2.x<boxMax_.y && i2.x>boxMin_.z && i2.x<boxMax_.z)
+        if(i2.y>boxMin_.y && i2.y<boxMax_.y && i2.z>boxMin_.z && i2.z<boxMax_.z)
         {
             hitp2 = true;
         }
 
-        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
-        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+        auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0));
+        //sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
+        auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0));
+        //sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
 
-        if(hitp1 == true && hitp2 == true)
+        if(hitp1 && hitp2)
         {
             if(distance1<distance2)
             {
@@ -84,7 +90,7 @@ bool Box::intersect ( Ray const & ray , float & t )
                     cam_dist=distance2;
                 }
             }
-            else if(distance2<distance1)
+            else 
             {
                 if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
@@ -97,14 +103,14 @@ bool Box::intersect ( Ray const & ray , float & t )
             }    
             intersect = true;
         }
-        if(hitp1 == true && hitp2 ==false)
+        if(hitp1)
         {
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
                 }
         }
-        if(hitp1 ==false && hitp2 == true)
+        if(hitp2 )
         {
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
@@ -123,11 +129,11 @@ bool Box::intersect ( Ray const & ray , float & t )
 
         bool hitp1 = false;                         //hitpoint?
         bool hitp2 = false;
-        if(i1.y>boxMin_.x && i1.y<boxMax_.x && i1.y>boxMin_.z && i1.y<boxMax_.z)  //test if the hitpoint is in range from yz level
+        if(i1.x>boxMin_.x && i1.x<boxMax_.x && i1.z>boxMin_.z && i1.z<boxMax_.z)  //test if the hitpoint is in range from yz level
         {
             hitp1 = true; //hit
         }
-        if(i2.y>boxMin_.x && i2.y<boxMax_.x && i2.y>boxMin_.z && i2.y<boxMax_.z)
+        if(i2.x>boxMin_.x && i2.x<boxMax_.x && i2.z>boxMin_.z && i2.z<boxMax_.z)
         {
             hitp2 = true;
         }
@@ -187,11 +193,11 @@ bool Box::intersect ( Ray const & ray , float & t )
 
         bool hitp1 = false;                         
         bool hitp2 = false;
-        if(i1.z>boxMin_.y && i1.z<boxMax_.y && i1.z>boxMin_.x && i1.z<boxMax_.x)  
+        if(i1.y>boxMin_.y && i1.y<boxMax_.y && i1.x>boxMin_.x && i1.x<boxMax_.x)  
         {
             hitp1 = true;
         }
-        if(i2.z>boxMin_.y && i2.z<boxMax_.y && i2.z>boxMin_.x && i2.z<boxMax_.x)
+        if(i2.y>boxMin_.y && i2.y<boxMax_.y && i2.x>boxMin_.x && i2.x<boxMax_.x)
         {
             hitp2 = true;
         }
@@ -199,7 +205,7 @@ bool Box::intersect ( Ray const & ray , float & t )
         auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); 
         auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); 
 
-        if(hitp1 == true && hitp2 == true)
+        if(hitp1 && hitp2)
         {
             if(distance1<distance2)
             {
@@ -225,14 +231,14 @@ bool Box::intersect ( Ray const & ray , float & t )
             }    
             intersect = true;
         }
-        if(hitp1 == true && hitp2 ==false)
+        if(hitp1)
         {
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
                 }
         }
-        if(hitp1 ==false && hitp2 == true)
+        if(hitp2)
         {
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
@@ -244,6 +250,12 @@ bool Box::intersect ( Ray const & ray , float & t )
     return intersect;
     
 }
+
+
+
+
+
+
 
 
 std::ostream& Box::print(std::ostream& os) const

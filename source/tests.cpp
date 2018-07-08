@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
   return Catch::Session().run(argc, argv);
 }
 
-TEST_CASE("aufgabe 2 test")
+/*TEST_CASE("aufgabe 2 test")
 {
  
  
@@ -75,7 +75,7 @@ TEST_CASE("intersect_ray_sphere", "[intersect]")
 
     float dist = 0.0f;
     REQUIRE(!sp.intersect(Ray{},distance));
-    REQUIRE(distance == Approx(4.0f));
+    REQUIRE(distance == Approx(-4.0f));
 
     glm::vec3 mid2{0.0,0.0,-5.0};
     double rad2(1.0);
@@ -86,7 +86,7 @@ TEST_CASE("intersect_ray_sphere", "[intersect]")
 
 }
 
-TEST_CASE("de/constuctor")
+/*TEST_CASE("de/constuctor")
 {
   std::cout << "===============================\n";
   Color red{255,0,0};
@@ -103,10 +103,51 @@ TEST_CASE("de/constuctor")
   delete s2;
 
 }
-
-TEST_CASE("read scene")
+*/
+TEST_CASE("Testing Box")
 {
+  glm::vec3 min{0.0,1.0,2.0};
+  glm::vec3 max{4.0,6.0,7.0};
+  Color clr{1.0,0.0,0.0};
+  std::shared_ptr<Material> mat = std::make_shared<Material>("red",clr,clr,clr,32);
+  Box box{"red-box",min,max,mat};
+  
+  
 
+  SECTION("constructor")
+  {
+    std::cout << "Aufgabenblatt 6 Tests: \n \n";  
+    REQUIRE(box.getBoxMin().x == 0.0);
+    REQUIRE(box.getBoxMin().y == 1.0);
+    REQUIRE(box.getBoxMin().z == 2.0);
+  
+  }
+
+  SECTION("print")
+  {
+    std::cout << box;
+  }
+
+  SECTION("intersect")
+  {
+    
+    
+    //no hit:
+    float dist = 0.0f;
+    REQUIRE(!box.intersect(*new Ray{}, dist));
+
+    //ray cuts front:
+
+      glm::vec3 min{-1.0,-1.0,-2.0};
+      glm::vec3 max{1.0,1.0,-3.0};
+      Box box2{"anotherRedBox",min,max,mat};
+      glm::vec3 origin2{0.0f,0.0f,0.0f};
+      glm::vec3 direction2{0.0f,0.0f,-1.0f};
+      Ray ray1{origin2,direction2};
+
+      REQUIRE(box2.intersect(ray1,dist));
+      REQUIRE(dist>0);
+  }
 }
 
 
