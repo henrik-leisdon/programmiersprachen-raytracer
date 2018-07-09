@@ -138,15 +138,37 @@ TEST_CASE("Testing Box")
 
     //ray cuts front:
 
-      glm::vec3 min{-1.0,-1.0,-2.0};
-      glm::vec3 max{1.0,1.0,-3.0};
-      Box box2{"anotherRedBox",min,max,mat};
+      glm::vec3 min1{-1.0,-1.0,-2.0};
+      glm::vec3 max1{1.0,1.0,-3.0};
+      Box box2{"anotherRedBox",min1,max1,mat};
       glm::vec3 origin2{0.0f,0.0f,0.0f};
       glm::vec3 direction2{0.0f,0.0f,-1.0f};
       Ray ray1{origin2,direction2};
 
       REQUIRE(box2.intersect(ray1,dist));
       REQUIRE(dist>0);
+
+      //box is behind ray:
+
+      glm::vec3 min2{-1.0,-1.0,2.0};
+      glm::vec3 max2{1.0,1.0,3.0};
+      Box box3{"RedBox3",min2,max2,mat};
+      glm::vec3 origin3{0.0f,0.0f,0.0f};
+      glm::vec3 direction3{0.0f,0.0f,-1.0f};
+      Ray ray2{origin3,direction3};
+      dist = -1;
+      REQUIRE(box3.intersect(ray2, dist));
+
+      //ray inside box
+      glm::vec3 min3{-3.0,-1.5,-2.0};
+      glm::vec3 max3{2.0,2.5,-3.5};
+      Box box4{"RedBox4",min3,max3,mat};
+      dist = -1;
+      
+      REQUIRE(box4.intersect(ray1, dist));
+      REQUIRE(dist >0);
+      
+
   }
 }
 

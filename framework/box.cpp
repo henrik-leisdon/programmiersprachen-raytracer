@@ -77,15 +77,15 @@ bool Box::intersect ( Ray const & ray , float & t )
         auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0));
         //sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
 
-        if(hitp1 && hitp2)
+        if(hitp1 && hitp2)  //box is infront/behind box
         {
-            if(distance1<distance2)
+            if(distance1<distance2) //box hits front side before back side of box 
             {
-                if(distance1>0 && (distance1<cam_dist || cam_dist<0))
+                if(distance1>0 && (distance1<cam_dist || cam_dist<0)) //distance1 vorhanden and camist < 0(so box is infront of cam) or cam dist default
                 {
                     cam_dist=distance1;
                 }
-                else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
+                else if(distance2>0 && (distance2<cam_dist || cam_dist<0)) //same like dist 1 just with distance2
                 {
                     cam_dist=distance2;
                 }
@@ -103,14 +103,14 @@ bool Box::intersect ( Ray const & ray , float & t )
             }    
             intersect = true;
         }
-        if(hitp1)
+        if(hitp1)  //ray is inside box or hits edge of box
         {
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
                 }
         }
-        if(hitp2 )
+        if(hitp2 ) //ray is inside box or hits edge of box
         {
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
