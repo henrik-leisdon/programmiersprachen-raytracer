@@ -25,12 +25,21 @@ void Renderer::render()
     for (unsigned x = 0; x < width_; ++x) {
       Pixel p(x,y);
       if ( ((x/checker_pattern_size)%2) != ((y/checker_pattern_size)%2)) {
-        p.color = Color(0.0, 1.0, float(x)/height_);
+        p.color = Color(1.0, 1.0, 1.0);//float(x)/height_*2);
       } else {
-        p.color = Color(1.0, 0.0, float(y)/width_);
+        p.color = Color(0.0, 0.0, 0.0); //float(y)/width_*2);
       }
 
       write(p);
+    }
+  }
+
+  for (unsigned y = 200; y < 400; ++y) {
+    for (unsigned x = 200; x < 400; ++x) {
+      Pixel p2(x,y);
+      p2.color = Color(0.0,1.0,0.0);
+
+    write(p2);
     }
   }
   ppm_.save(filename_);

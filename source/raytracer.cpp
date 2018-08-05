@@ -1,5 +1,6 @@
 #include <renderer.hpp>
 #include <window.hpp>
+#include "box.hpp"
 
 #include <GLFW/glfw3.h>
 #include <thread>
@@ -24,6 +25,7 @@ int main(int argc, char* argv[])
       window.close();
     }
     window.show(renderer.color_buffer());
+   
   }
 
   //"join" threads, i.e. synchronize main thread with render_thread

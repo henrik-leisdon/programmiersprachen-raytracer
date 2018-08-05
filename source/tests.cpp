@@ -167,6 +167,10 @@ TEST_CASE("Testing Box")
       
       REQUIRE(box4.intersect(ray1, dist));
       REQUIRE(dist >0);
+
+      Material mat2{"red",clr,clr,clr,32};
+
+      std::cout << "\n" << mat2 <<"\n";
       
 
   }
@@ -176,7 +180,11 @@ TEST_CASE("read sdf")
 {
   std::shared_ptr<Scene> scene = std::make_shared<Scene>();
   read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*scene);
-  std::cout << "material green: " << find_material("green", *scene) << "\n";
+  std::cout << "material green: " ;
+  if(find_material("green", *scene)==0) 
+  std::cout << "green"; 
+  std::cout << "\n";
+
 
   REQUIRE(find_material("pink",*scene) == nullptr);
 

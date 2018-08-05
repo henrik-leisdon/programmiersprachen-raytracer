@@ -252,12 +252,6 @@ bool Box::intersect ( Ray const & ray , float & t )
 }
 
 
-
-
-
-
-
-
 std::ostream& Box::print(std::ostream& os) const
 {
     os  << "area: " << area() <<"\n"
