@@ -9,6 +9,7 @@
 #include <memory>
 #include "box.hpp"
 #include "sphere.hpp"
+#include "light.hpp"
 
 
 
@@ -23,6 +24,6 @@ class Scene
 
 
         std::map <std::string,std::shared_ptr< Material>> material_map;
-    //shape map or one map for every object (box,sphere...)??        
+        std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??        
 
 }

@@ -25,6 +25,7 @@ void read_SDF(std::string const& path, Scene& scene)
         Material mat;
         Box box;
         Sphere sphere;
+        Light light;
 
         line_buffer >> i1 >> i2 >>i3 >> i4;
 
@@ -69,6 +70,18 @@ void read_SDF(std::string const& path, Scene& scene)
                 }
             
             //insert shape map??
+            }
+            if(i2 == "light")
+            {
+                line_buffer >> i1 >> i2 
+                >>light.getName
+                >>light.getPos
+                >>light.getClr
+                >>light.getBrightness;
+
+                std::shared_ptr<Light>lightp = std::make_shared<Light>(light);
+                scene.light_map.insert(std::pair<std::string,std::shared_ptr<Light>> (lightp->getName,lightp));
+           
             }
         }        
 
