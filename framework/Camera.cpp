@@ -8,7 +8,7 @@ Camera::Camera():
     angle_(0.0f),
     pos_({0.0f, 0.0f, 0.0f}), //in the center 
     dir_({0.0f, 0.0f, -1.0f}), //negative z axis
-    up_({0.0f, 1.0f, 0.0f}),
+    up_({0.0f, 1.0f, 0.0f})
     {};
 
 //for adjusting the camera at angle
@@ -20,9 +20,9 @@ Camera::Camera(string const& name, float fov, glm::vec3 const& pos):
     dir_({0.0f, 0.0f, -1.0f}),
     up_({0.0f, 1.0f, 0.0f})
     {
-        float radius = (angle_ * M_PI/360;
+        float radius = (angle_ * M_PI/360);
         dist_ = 0.5/(tan(radius));
-        )
+        
     };
 
 Camera::~Camera(){

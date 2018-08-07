@@ -10,12 +10,12 @@
 class Light
 {
     public:
-        Light();
-        Light(std::string name,glm::vec3 const& pos,Color const& clr,int brightness);
+        Light(); //Default constructor
+        Light(std::string name,glm::vec3 const& pos,Color const& clr,int brightness); //copy constructor
 
-        ~Light();
+        ~Light(); //deconstructor
 
-        std::string getName();
+        std::string getName(); //getter
         glm::vec3 getPos();
         Color getClr();
         int getBrightness();
