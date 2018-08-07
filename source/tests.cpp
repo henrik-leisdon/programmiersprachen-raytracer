@@ -1,5 +1,5 @@
 
-#define CATCH_CONFIG_RUNNER
+/*#define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 
 #include <glm/glm.hpp>
@@ -103,7 +103,7 @@ TEST_CASE("intersect_ray_sphere", "[intersect]")
   delete s2;
 
 }
-*/
+
 TEST_CASE("Testing Box")
 {
   glm::vec3 min{0.0,1.0,2.0};
@@ -176,7 +176,7 @@ TEST_CASE("Testing Box")
   }
 }
 
-TEST_CASE("read sdf")
+/*TEST_CASE("read sdf")
 {
   std::shared_ptr<Scene> scene = std::make_shared<Scene>();
   read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*scene);
@@ -189,7 +189,7 @@ TEST_CASE("read sdf")
   REQUIRE(find_material("pink",*scene) == nullptr);
 
 }
-
+*/
 
 
 

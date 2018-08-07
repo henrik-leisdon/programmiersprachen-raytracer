@@ -15,6 +15,9 @@
 #include "ppmwriter.hpp"
 #include <string>
 #include <glm/glm.hpp>
+#include "scene.hpp"
+#include "ray.hpp"
+
 
 class Renderer
 {

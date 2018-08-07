@@ -9,6 +9,7 @@
 
 #include "renderer.hpp"
 
+
 Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   : width_(w)
   , height_(h)
@@ -21,27 +22,22 @@ void Renderer::render()
 {
   std::size_t const checker_pattern_size = 20;
 
-  for (unsigned y = 0; y < height_; ++y) {
-    for (unsigned x = 0; x < width_; ++x) {
+  for (int y= 0-(height_/2); y < height_/2; ++y) {
+    for (int x = 0 - (width_/2) ; x < (width_/2); ++x) {
       Pixel p(x,y);
-      if ( ((x/checker_pattern_size)%2) != ((y/checker_pattern_size)%2)) {
-        p.color = Color(1.0, 1.0, 1.0);//float(x)/height_*2);
-      } else {
-        p.color = Color(0.0, 0.0, 0.0); //float(y)/width_*2);
-      }
+      
+      Scene scene;
+      glm::vec3 origin{0.0f,0.0f,0.0f};
+      glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
+      Ray ray{origin,direction};
+      scene.getPixelColor(ray);
+
+      
 
       write(p);
     }
   }
 
-  for (unsigned y = 200; y < 400; ++y) {
-    for (unsigned x = 200; x < 400; ++x) {
-      Pixel p2(x,y);
-      p2.color = Color(0.0,1.0,0.0);
-
-    write(p2);
-    }
-  }
   ppm_.save(filename_);
 }
 
@@ -60,3 +56,11 @@ void Renderer::write(Pixel const& p)
 
   ppm_.write(p);
 }
+
+
+
+      /*if ( ((x/checker_pattern_size)%2) != ((y/checker_pattern_size)%2)) {
+        p.color = Color(1.0, 1.0, 1.0);//float(x)/height_*2);
+      } else {
+        p.color = Color(0.0, 0.0, 0.0); //float(y)/width_*2);*
+      }*/

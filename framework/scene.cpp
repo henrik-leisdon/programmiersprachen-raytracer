@@ -1,5 +1,6 @@
 #include "scene.hpp"
 
+
 void read_SDF(std::string const& path, Scene& scene)
 {
     std::ifstream file(path);
@@ -49,6 +50,8 @@ void read_SDF(std::string const& path, Scene& scene)
                 std::shared_ptr<Material>matp = std::make_shared<Material>(mat);
                 scene.material_map.insert(std::pair<std::string,std::shared_ptr<Material>> (matp->name_,matp));
             }
+          	
+          	//template map for reading objects into the scene
 
             if(i2 == "shape") //get shape datas
             {
@@ -59,6 +62,9 @@ void read_SDF(std::string const& path, Scene& scene)
                     >>box.getBoxMin
                     >>box.getBoxMax
                     >>box.getMaterial; 
+                  
+                	std::shared_ptr<Box>boxp = std::make_shared<Box>(box);
+                  scene.box_map.insert(std::pair<std::string,std::shared_ptr<Box>> (boxp->getName,boxp));
                 }
                 if(i3 == "sphere") //read sphere datas
                 {
@@ -67,9 +73,11 @@ void read_SDF(std::string const& path, Scene& scene)
                     >>sphere.getSpMid
                     >>sphere.getSpRadius
                     >>sphere.getMaterial;
+                  
+                  std::shared_ptr<Sphere>spherep = std::make_shared<Sphere>(sphere);
+                  scene.sphere_map.insert(std::pair<std::string,std::shared_ptr<Sphere>> (spherep->getName,spherep));
                 }
             
-            //insert shape map??
             }
             if(i2 == "light")
             {
@@ -88,6 +96,13 @@ void read_SDF(std::string const& path, Scene& scene)
     }
     file.close();
 
+}
+Color getPixelColor(Ray const& ray, Scene& scene)
+{
+    for(std::map<std::string, std::shared_ptr<Box>>::iterator it = scene.box_map.begin();it!=scene.box_map.end(); ++it)
+    {
+        if(it->first)
+    }
 }
 
 
