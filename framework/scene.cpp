@@ -97,13 +97,7 @@ void read_SDF(std::string const& path, Scene& scene)
     file.close();
 
 }
-Color getPixelColor(Ray const& ray, Scene& scene)
-{
-    for(std::map<std::string, std::shared_ptr<Box>>::iterator it = scene.box_map.begin();it!=scene.box_map.end(); ++it)
-    {
-        if(it->first)
-    }
-}
+
 
 
 std::shared_ptr<Material> find_material(std::string matName, Scene& sc)

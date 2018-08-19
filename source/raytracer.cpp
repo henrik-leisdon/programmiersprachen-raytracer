@@ -1,17 +1,23 @@
 #include <renderer.hpp>
+#include "scene.hpp"
 #include <window.hpp>
-#include "box.hpp"
 
 #include <GLFW/glfw3.h>
 #include <thread>
 #include <utility>
 #include <cmath>
 
+
+
 int main(int argc, char* argv[])
 {
   unsigned const image_width = 800;
   unsigned const image_height = 600;
   std::string const filename = "./checkerboard.ppm";
+
+  std::shared_ptr<Scene> scene = make_shared<Scene>();
+  read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*scene);
+  
 
   Renderer renderer{image_width, image_height, filename};
 
