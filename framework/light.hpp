@@ -14,7 +14,7 @@ class Light
         Light(); //Default constructor
         Light(std::string name,glm::vec3 const& pos,Color const& clr,int brightness); //copy constructor
 
-        ~Light(); //deconstructor
+      
 
         std::string getName(); //getter
         glm::vec3 getPos();

@@ -15,8 +15,6 @@ Light::Light(std::string name, glm::vec3 const& pos, Color const& clr, int brigh
     brightness_{brightness}
     {};
 
-Light::~Light()
-{};
 
 std::string Light::getName()
         {

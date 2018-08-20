@@ -18,7 +18,7 @@
 #include "shape.hpp"
 #include "box.hpp"
 #include "sphere.hpp"
-#include "light.hpp"
+//#include "light.hpp"
 
 
 
@@ -27,13 +27,13 @@ class Scene
     public:
 
         std::map <std::string,std::shared_ptr< Material>> material_map;
-        std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
+        //std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
   		std::map <std::string,std::shared_ptr< Box>> box_map;
   		std::map <std::string,std::shared_ptr< Sphere>> sphere_map;
 
 };
 
-    void read_SDF(std::string const& path, Scene& scene)
+    static void read_SDF(std::string const& path, Scene& scene)
 {
     std::ifstream file(path);
     std::string line;
@@ -58,7 +58,7 @@ class Scene
         Material mat;
         Box box;
         Sphere sphere;
-        Light light;
+        //Light light;
 
         line_buffer >> i1 >> i2 >>i3 >> i4;
 
@@ -89,40 +89,53 @@ class Scene
             {
                 if(i3 == "box") //read box data
                 {
+                    std::string boxname;
+                    int boxminx, boxminy, boxminz;
+                    int boxmaxx, boxmaxy, boxmaxz;
+                    std::string boxmat;
+
                     line_buffer >> i1 >> i2 >> i3
-                    >>box.getName
-                    >>box.getBoxMin
-                    >>box.getBoxMax
-                    >>box.getMaterial; 
+                    >> boxname
+                    >>boxminx  >>boxminy >>boxminz
+                    >>boxmaxx  >>boxmaxy >>boxmaxz
+                    >>boxmat; 
                   
                 	std::shared_ptr<Box>boxp = std::make_shared<Box>(box);
-                  scene.box_map.insert(std::pair<std::string,std::shared_ptr<Box>> (boxp->getName,boxp));
+                  scene.box_map.insert(std::pair<std::string,std::shared_ptr<Box>> (boxname ,boxp));
                 }
                 if(i3 == "sphere") //read sphere datas
                 {
+                    std::string spherename, spheremat;
+                    int spcenterx, spcentery, spcenterz, spradius;
+
                     line_buffer >> i1 >> i2 >> i3
-                    >>sphere.getName
-                    >>sphere.getSpMid
-                    >>sphere.getSpRadius
-                    >>sphere.getMaterial;
+                    >>spherename
+                    >>spcenterx >>spcentery >>spcenterz
+                    >>spradius
+                    >>spheremat;
                   
                   std::shared_ptr<Sphere>spherep = std::make_shared<Sphere>(sphere);
-                  scene.sphere_map.insert(std::pair<std::string,std::shared_ptr<Sphere>> (spherep->getName,spherep));
+                  scene.sphere_map.insert(std::pair<std::string,std::shared_ptr<Sphere>> (spherename,spherep));
                 }
             
             }
-            if(i2 == "light")
+            /*if(i2 == "light")
             {
+                std::string lightname;
+                int lightposx, lightposy, lightposz, lcolr, lcolg, lcolb, brightness;
+
+
+
                 line_buffer >> i1 >> i2 
-                >>light.getName
-                >>light.getPos
-                >>light.getClr
-                >>light.getBrightness;
+                >>lightname
+                >>lightposx >>lightposy >>lightposz
+                >>lcolr >>lcolg >>lcolb
+                >>brightness;
 
                 std::shared_ptr<Light>lightp = std::make_shared<Light>(light);
-                scene.light_map.insert(std::pair<std::string,std::shared_ptr<Light>> (lightp->getName,lightp));
+                scene.light_map.insert(std::pair<std::string,std::shared_ptr<Light>> (lightname,lightp));
            
-            }
+            }*/
         }        
 
     }

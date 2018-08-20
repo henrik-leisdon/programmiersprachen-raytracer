@@ -25,7 +25,7 @@ class Renderer
 public:
   Renderer(unsigned w, unsigned h, std::string const& file);
 
-  void render();
+  void render(Scene& scene, int frame);
 
   Color getPixelColor(Ray const& ray, Scene& scene, float dist);
 

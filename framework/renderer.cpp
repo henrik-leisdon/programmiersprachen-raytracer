@@ -19,23 +19,28 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   , ppm_(width_, height_)
 {}
 
-void Renderer::render()
+void Renderer::render(Scene& scene, int frame)
 {
   std::size_t const checker_pattern_size = 20;
   //std::shared_ptr<Scene> scene = std::make_shared<Scene>();
   Scene scene1;
   
   
-  for (int y= 0-(height_/2); y < height_/2; ++y) {
-    for (int x = 0 - (width_/2) ; x < (width_/2); ++x) {
+  for (int y=0; y < height_; ++y) {
+    for (int x = 0; x < width_; ++x) {
       Pixel p(x,y);
       
       
       glm::vec3 origin{0.0f,0.0f,0.0f};
       glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
       Ray ray{origin,direction};
-      getPixelColor(ray, scene1, direction.z);
-      
+      p.color = getPixelColor(ray, scene1, direction.z);
+      if (x == 10 && y == 10)
+      {
+        std::cout <<p.color;
+      }
+
+      //p.color = Color(1.0,0.0,0.5);
 
       write(p);
     }
@@ -54,6 +59,11 @@ Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
         {
             return b1->getMaterial()->ka_;
             
+        }
+        else
+        {
+          Color grey{0, 1, 1};
+          return grey;
         }
     }
 }

@@ -15,14 +15,16 @@ int main(int argc, char* argv[])
   unsigned const image_height = 600;
   std::string const filename = "./checkerboard.ppm";
 
-  std::shared_ptr<Scene> scene = make_shared<Scene>();
-  read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*scene);
+  std::shared_ptr<Scene> szene = std::make_shared<Scene>();
+  read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*szene);
   
 
   Renderer renderer{image_width, image_height, filename};
 
+  renderer.render(*szene, 1);
+
   //create separate thread to see updates of pixels while rendering
-  std::thread render_thread([&renderer]() {renderer.render();});
+  //std::thread render_thread([&renderer]() {renderer.render(*scene, );});
 
   Window window{{image_width, image_height}};
 
@@ -35,6 +37,6 @@ int main(int argc, char* argv[])
   }
 
   //"join" threads, i.e. synchronize main thread with render_thread
-  render_thread.join();
+  //render_thread.join();
   return 0;
 }
