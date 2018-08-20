@@ -28,8 +28,7 @@ class Scene
 
         std::map <std::string,std::shared_ptr< Material>> material_map;
         //std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
-  		std::map <std::string,std::shared_ptr< Box>> box_map;
-  		std::map <std::string,std::shared_ptr< Sphere>> sphere_map;
+  		std::map <std::string,std::shared_ptr< Shape>> shape_map;
 
 };
 
@@ -101,7 +100,7 @@ class Scene
                     >>boxmat; 
                   
                 	std::shared_ptr<Box>boxp = std::make_shared<Box>(box);
-                  scene.box_map.insert(std::pair<std::string,std::shared_ptr<Box>> (boxname ,boxp));
+                  scene.shape_map.insert(std::pair<std::string,std::shared_ptr<Box>> (boxname ,boxp));
                 }
                 if(i3 == "sphere") //read sphere datas
                 {
@@ -115,7 +114,7 @@ class Scene
                     >>spheremat;
                   
                   std::shared_ptr<Sphere>spherep = std::make_shared<Sphere>(sphere);
-                  scene.sphere_map.insert(std::pair<std::string,std::shared_ptr<Sphere>> (spherename,spherep));
+                  scene.shape_map.insert(std::pair<std::string,std::shared_ptr<Sphere>> (spherename,spherep));
                 }
             
             }

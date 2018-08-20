@@ -51,10 +51,23 @@ void Renderer::render(Scene& scene, int frame)
 
 Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
 {
-    
-    for(std::map<std::string, std::shared_ptr<Box>>::iterator it = scene.box_map.begin(); it!=scene.box_map.end(); ++it)
+    if( ray.direction.x == 100)
+    {
+      Color rdm{1,0,1};
+      return rdm;
+
+    }
+    else{
+    for(std::map<std::string, std::shared_ptr<Box>>::iterator it = scene.shape_map.begin(); it!=scene.shape_map.end(); ++it)
     {
         auto b1 = it->second;
+        if(ray.direction.y == 200)
+        {
+          Color rdm{1,1,0};
+          return rdm;
+        }
+        else{
+          
         if(b1->intersect(ray, dist) == true)
         {
             return b1->getMaterial()->ka_;
@@ -65,6 +78,8 @@ Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
           Color grey{0, 1, 1};
           return grey;
         }
+        }
+    }
     }
 }
 
