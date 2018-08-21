@@ -5,19 +5,17 @@
 Sphere::Sphere():
     Shape(),
     spMid_({0.0,0.0,0.0}),
-    spRadius_{0.0}
-    {std::cout << "sp child default constructor \n ";};
+    spRadius_{100.0}
+    {};
 
 Sphere::Sphere(glm::vec3 const& spMid, double spRadius, std::string name, std::shared_ptr<Material> material):
     Shape(name, material),
     spMid_{spMid},
     spRadius_{spRadius}
-    {std::cout << "sp child copy constructor \n ";};
+    {};
 
 Sphere::~Sphere()
-{
-    std::cout << "sp child deconstructor \n ";
-}
+{}
 
 
 glm::vec3 Sphere::getSpMid() const

@@ -22,12 +22,11 @@
 
 
 
-class Scene
+struct Scene
 {
-    public:
 
         std::map <std::string,std::shared_ptr< Material>> material_map;
-        //std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
+        //std::map <std::string,std::shared_ptr< Light>> light_map; 
   		std::map <std::string,std::shared_ptr< Shape>> shape_map;
 
 };
@@ -82,9 +81,9 @@ class Scene
                 scene.material_map.insert(std::pair<std::string,std::shared_ptr<Material>> (matp->name_,matp));
             }
           	
-          	//template map for reading objects into the scene
+          
 
-            if(i2 == "shape") //get shape datas
+            if(i2 == "shape")
             {
                 if(i3 == "box") //read box data
                 {
@@ -142,9 +141,17 @@ class Scene
 
 }
   
-  		
-
-        shared_ptr<Material> find_material(std::string matName, Scene& sc);
-
+std::shared_ptr<Material> find_material(std::string matName, Scene& sc)
+{
+    if(sc.material_map.find(matName) != sc.material_map.end())
+    {
+        return sc.material_map.find(matName)->second;
+        
+    }
+    else 
+    {
+        return nullptr;
+    }
+}
 
 #endif
