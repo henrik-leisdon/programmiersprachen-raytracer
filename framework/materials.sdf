@@ -2,11 +2,5 @@ define material red   1 0 0 1 0 0 1 0 0 20
 define material green 0 1 0 0 1 0 0 1 0 50
 define material blue  0 0 1 0 0 1 0 0 1 10
 
-<<<<<<< HEAD
 define shape sphere s1 100 100 500 200 blue
-#define shape box b1 100 100 -300 200 200 -500 blue
-=======
-define sphere s1 100 100 500 200 blue
-define box b1 100 100 -300 200 200 -500 blue
-define box b1 -100 10 -300 80 80 -500 red
->>>>>>> 1bf949107478095a556e433929787c711cd32dcf
+define shape box b1 100 100 -300 200 200 -500 blue

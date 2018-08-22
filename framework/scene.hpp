@@ -25,15 +25,9 @@
 struct Scene
 {
 
-<<<<<<< HEAD
         std::map <std::string, std::shared_ptr< Material>> material_map;
         //std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
   		std::vector <std::shared_ptr< Shape>> shape_vec;
-=======
-        std::map <std::string,std::shared_ptr< Material>> material_map;
-        //std::map <std::string,std::shared_ptr< Light>> light_map; 
-  		std::map <std::string,std::shared_ptr< Shape>> shape_map;
->>>>>>> 1bf949107478095a556e433929787c711cd32dcf
 
 };
 
@@ -96,13 +90,9 @@ struct Scene
                 std::cout << "\n add mat " <<mat.name_;  
             }
           	
-          
-
-<<<<<<< HEAD
+        
             if(shape_mat == "shape") //get shape datas
-=======
-            if(i2 == "shape")
->>>>>>> 1bf949107478095a556e433929787c711cd32dcf
+
             {
                 if( obj_col== "box") //read box data
                 {
@@ -156,24 +146,9 @@ struct Scene
 
 }
   
-<<<<<<< HEAD
   		
 
         
 
-=======
-std::shared_ptr<Material> find_material(std::string matName, Scene& sc)
-{
-    if(sc.material_map.find(matName) != sc.material_map.end())
-    {
-        return sc.material_map.find(matName)->second;
-        
-    }
-    else 
-    {
-        return nullptr;
-    }
-}
->>>>>>> 1bf949107478095a556e433929787c711cd32dcf
 
 #endif
