@@ -87,7 +87,7 @@ struct Scene
                 std::shared_ptr<Material>matp = std::make_shared<Material>(mat);
                 scene.material_map.insert(std::pair<std::string,std::shared_ptr<Material>> (matp->name_,matp));
             
-                std::cout << "\n add mat " <<mat.name_;  
+                //std::cout << "\n add mat " <<mat.name_;  
             }
           	
         
@@ -105,7 +105,7 @@ struct Scene
                 	std::shared_ptr<Box>boxp = std::make_shared<Box>(box_o);
                   scene.shape_vec.push_back(boxp);
 
-                  std::cout << "\n add box " <<s1;
+                  //std::cout << "\n add box " <<s1;
                 }
                 if(obj_col == "sphere") //read sphere datas
                 {
@@ -116,7 +116,7 @@ struct Scene
                   std::shared_ptr<Sphere>spherep = std::make_shared<Sphere>(sphere_o);
                   scene.shape_vec.push_back(spherep);
 
-                  std::cout << "\n add sphere " <<s1;
+                 // std::cout << "\n add sphere " <<s1;
                 }
             
             }
@@ -138,8 +138,8 @@ struct Scene
            
             }*/
         }        
-    auto size  = scene.shape_vec.size();
-    std::cout << "\n vec size: \n" << size;
+    //auto size  = scene.shape_vec.size();
+    //std::cout << "\n vec size: \n" << size;
 
     }
     file.close();

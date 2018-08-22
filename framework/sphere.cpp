@@ -15,6 +15,7 @@ Sphere::Sphere(glm::vec3 const& spMid, double spRadius, std::string name, std::s
     spMid_{spMid},
     spRadius_{spRadius}
     {};
+    
 
 Sphere::~Sphere()
 {

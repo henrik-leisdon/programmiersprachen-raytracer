@@ -18,6 +18,7 @@ struct Material
         ks_({0.0f, 0.0f, 0.0f}),
         m_(0.0f)
         {}
+    
 
     //Costum Constructor
     Material(string const& name, Color const& ka, Color const& kd, Color const& ks, float m) :

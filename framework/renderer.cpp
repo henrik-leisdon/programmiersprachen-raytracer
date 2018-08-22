@@ -22,7 +22,6 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
 void Renderer::render(Scene& scene, int frame)
 {
   std::size_t const checker_pattern_size = 20;
-  //std::shared_ptr<Scene> scene = std::make_shared<Scene>();
   Scene scene1;
   
   
@@ -30,19 +29,17 @@ void Renderer::render(Scene& scene, int frame)
     for (int x = 0; x < width_; ++x) {
       Pixel p(x,y);
       
-      
-      glm::vec3 origin{0.0f,0.0f,0.0f};
+
+
+      glm::vec3 origin{300.0f, 150.0f ,0.0f};
       glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
       Ray ray{origin,direction};
       
-      p.color= Color(0,0,0.5);
       
-      p.color = getPixelColor(ray, scene1, direction.z);
       
-      //p.color= Color(0,1,0.5);
-
-
-      //p.color = Color(1.0,0.0,0.5);
+      p.color = getPixelColor(ray, scene, direction.z);
+      
+      p.color = Color(0.5,0.5,0.5);      
 
       write(p);
     }
@@ -53,34 +50,24 @@ void Renderer::render(Scene& scene, int frame)
 
 Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
 {   
-    std::cout << "\n get in method get pixel color  \n ";
     std::vector<std::shared_ptr<Shape>> intersected;
-    auto size  = scene.shape_vec.size();
-    std::cout << "\n vec size get pixel color: \n" << size;
-    if(scene.shape_vec[1]->intersect(ray, dist) == true)
-    {
-      return Color(1,0,0);
-    }
-
-    //return Color(1,0,0);
-    /*for (auto i : scene.shape_vec)
-    {        
-        std::cout << "\n get in loop for every object in vec \n";
+ 
+    for (auto i : scene.shape_vec)
+    {       
         if(i->intersect(ray, dist) == true)
         {
           intersected.push_back(i);
-          return Color(1,0,0);
-          //return i->getMaterial()->ka_;
+          return Color(1,1,1);
+          //return i->getMaterial()->ks_;
             
         }
         else
         {
-          Color grey{0, 1, 1};
-          return grey;
+          return Color(0.5,0.5,0.5);
         }
       }
     
-  */
+  
 }
 
 void Renderer::write(Pixel const& p)
