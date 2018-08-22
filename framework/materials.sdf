@@ -1,6 +1,6 @@
-define material red 1 0 0 1 0 0 1 0 0 20
+define material red   1 0 0 1 0 0 1 0 0 20
 define material green 0 1 0 0 1 0 0 1 0 50
-define material blue 0 0 1 0 0 1 0 0 1 10
+define material blue  0 0 1 0 0 1 0 0 1 10
 
-define sphere s1 100 100 500 200 blue
-define box b1 100 100 -300 200 200 -500 blue
+define shape sphere s1 100 100 500 200 blue
+#define shape box b1 100 100 -300 200 200 -500 blue

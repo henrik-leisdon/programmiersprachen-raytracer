@@ -34,11 +34,13 @@ void Renderer::render(Scene& scene, int frame)
       glm::vec3 origin{0.0f,0.0f,0.0f};
       glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
       Ray ray{origin,direction};
+      
+      p.color= Color(0,0,0.5);
+      
       p.color = getPixelColor(ray, scene1, direction.z);
-      if (x == 10 && y == 10)
-      {
-        std::cout <<p.color;
-      }
+      
+      //p.color= Color(0,1,0.5);
+
 
       //p.color = Color(1.0,0.0,0.5);
 
@@ -50,27 +52,24 @@ void Renderer::render(Scene& scene, int frame)
 }
 
 Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
-{
-    if( ray.direction.x == 100)
-    {
-      Color rdm{1,0,1};
-      return rdm;
+{   
+    //std::cout << "\n get in method get pixel color  \n ";
+    std::vector<std::shared_ptr<Shape>> intersected;
 
-    }
-    else{
-    for(std::map<std::string, std::shared_ptr<Box>>::iterator it = scene.shape_map.begin(); it!=scene.shape_map.end(); ++it)
+    if(scene.shape_vec[2]->intersect(ray, dist) == true)
     {
-        auto b1 = it->second;
-        if(ray.direction.y == 200)
+      return Color(1,0,0);
+    }
+
+    //return Color(1,0,0);
+    /*for (auto i : scene.shape_vec)
+    {        
+        std::cout << "\n get in loop for every object in vec \n";
+        if(i->intersect(ray, dist) == true)
         {
-          Color rdm{1,1,0};
-          return rdm;
-        }
-        else{
-          
-        if(b1->intersect(ray, dist) == true)
-        {
-            return b1->getMaterial()->ka_;
+          intersected.push_back(i);
+          return Color(1,0,0);
+          //return i->getMaterial()->ka_;
             
         }
         else
@@ -78,9 +77,9 @@ Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
           Color grey{0, 1, 1};
           return grey;
         }
-        }
-    }
-    }
+      }
+    
+  */
 }
 
 void Renderer::write(Pixel const& p)
@@ -98,6 +97,11 @@ void Renderer::write(Pixel const& p)
 
   ppm_.write(p);
 }
+
+
+
+
+
 
 
 
