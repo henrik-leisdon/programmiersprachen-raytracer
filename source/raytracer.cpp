@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 
   std::shared_ptr<Scene> szene = std::make_shared<Scene>();
   read_SDF("/home/thetrippleh/Dokumente/Grive/Uni/git/buw_programmiersprachen/programmiersprachen-raytracer/framework/materials.sdf",*szene);
+  std::cout << "\n test \n";
   
 
   Renderer renderer{image_width, image_height, filename};

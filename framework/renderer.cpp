@@ -38,9 +38,16 @@ void Renderer::render(Scene& scene, int frame)
       p.color= Color(0,0,0.5);
       
       p.color = getPixelColor(ray, scene1, direction.z);
+<<<<<<< HEAD
       
       //p.color= Color(0,1,0.5);
 
+=======
+      if (x == 10)
+      {
+        p.color = Color(1.0,0.0,0.5);
+      }
+>>>>>>> 1bf949107478095a556e433929787c711cd32dcf
 
       //p.color = Color(1.0,0.0,0.5);
 
@@ -52,6 +59,7 @@ void Renderer::render(Scene& scene, int frame)
 }
 
 Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
+<<<<<<< HEAD
 {   
     //std::cout << "\n get in method get pixel color  \n ";
     std::vector<std::shared_ptr<Shape>> intersected;
@@ -66,6 +74,22 @@ Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
     {        
         std::cout << "\n get in loop for every object in vec \n";
         if(i->intersect(ray, dist) == true)
+=======
+{
+    if( ray.direction.x == 100 && ray.direction.y == 100)
+    {
+      Color rdm{1,0,1};
+      return rdm;
+
+    }
+    else{
+    for(std::map<std::string, std::shared_ptr<Shape>>::iterator it = scene.shape_map.begin(); it!=scene.shape_map.end(); ++it)
+    {
+
+       /* else{
+          
+        if(b1->intersect(ray, dist) == true)
+>>>>>>> 1bf949107478095a556e433929787c711cd32dcf
         {
           intersected.push_back(i);
           return Color(1,0,0);
@@ -77,9 +101,15 @@ Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
           Color grey{0, 1, 1};
           return grey;
         }
+<<<<<<< HEAD
       }
     
   */
+=======
+        }*/
+    }
+    }
+>>>>>>> 1bf949107478095a556e433929787c711cd32dcf
 }
 
 void Renderer::write(Pixel const& p)
