@@ -18,7 +18,7 @@
 #include "shape.hpp"
 #include "box.hpp"
 #include "sphere.hpp"
-//#include "light.hpp"
+#include "light.hpp"
 
 
 
@@ -26,7 +26,7 @@ struct Scene
 {
 
         std::map <std::string, std::shared_ptr< Material>> material_map;
-        //std::map <std::string,std::shared_ptr< Light>> light_map;   //shape map or one map for every object (box,sphere...)??   
+        std::vector <std::shared_ptr< Light>> light_vec;   //shape map or one map for every object (box,sphere...)??   
   		std::vector <std::shared_ptr< Shape>> shape_vec;
 
 };
@@ -58,7 +58,7 @@ struct Scene
 
         std::string define, shape_mat, obj_col, s1, s6, s8;
 
-        int i2, i3, i4, i5, i7, i9, i10, i11;
+        float i2, i3, i4, i5, i7, i9, i10, i11;
 
         Material mat;
 
@@ -120,23 +120,22 @@ struct Scene
                 }
             
             }
-            /*if(i2 == "light")
-            {
+            if(shape_mat == "light")
+            {   Light light_o;
                 std::string lightname;
-                int lightposx, lightposy, lightposz, lcolr, lcolg, lcolb, brightness;
+                 
+                int i1 = atoi(s1.c_str());
+                float i6 = atoi(s6.c_str());
+                glm::vec3 lpos{i1, i2, i3};
+                Color lcol{i4, i5, i6};
+
+                light_o = Light(obj_col, lpos, lcol, i7);
 
 
-
-                line_buffer >> i1 >> i2 
-                >>lightname
-                >>lightposx >>lightposy >>lightposz
-                >>lcolr >>lcolg >>lcolb
-                >>brightness;
-
-                std::shared_ptr<Light>lightp = std::make_shared<Light>(light);
-                scene.light_map.insert(std::pair<std::string,std::shared_ptr<Light>> (lightname,lightp));
+                std::shared_ptr<Light>lightp = std::make_shared<Light>(light_o);
+                scene.light_vec.push_back(lightp);
            
-            }*/
+            }
         }        
     //auto size  = scene.shape_vec.size();
     //std::cout << "\n vec size: \n" << size;

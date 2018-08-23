@@ -5,11 +5,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <memory>
-#include "../framework/sphere.hpp"
-#include "../framework/box.hpp"
-#include "../framework/color.hpp"
-#include "../framework/scene.hpp"
-#include "../framework/material.hpp"
+//#include "../framework/sphere.hpp"
+//#include "../framework/box.hpp"
+//#include "../framework/color.hpp"
+//#include "../framework/scene.hpp"
+//#include "../framework/material.hpp"
 
 
 int main(int argc, char *argv[])

@@ -31,6 +31,7 @@ glm::vec3 Box::getBoxMax()
     return boxMax_;
 }
 
+
 double Box::area() const
 {
     double lenght{boxMax_.x-boxMin_.x};
@@ -73,11 +74,11 @@ bool Box::intersect ( Ray const & ray , float & t )
         }
 
         auto distance1 = sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0));
-        //sqrt(pow(i1.x-origin.x,2.0)+pow(i1.y-origin.y,2.0)+pow(i1.z-origin.z,2.0)); //distance between hitpoint 1 and origin
+        //distance between hitpoint 1 and origin
         auto distance2 = sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0));
-        //sqrt(pow(i2.x-origin.x,2.0)+pow(i2.y-origin.y,2.0)+pow(i2.z-origin.z,2.0)); //distance between hitpoint 2 and origin
+        //distance between hitpoint 2 and origin
 
-        if(hitp1 && hitp2)  //box is infront/behind box
+        if(hitp1 && hitp2)  //box is infront/behind cam
         {
             if(distance1<distance2) //box hits front side before back side of box 
             {
@@ -148,10 +149,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
                 else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
             }
             else if(distance2<distance1)
@@ -159,10 +162,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
                 else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
             }    
             intersect = true;
@@ -172,6 +177,7 @@ bool Box::intersect ( Ray const & ray , float & t )
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
         }
         if(hitp1 ==false && hitp2 == true)
@@ -179,6 +185,7 @@ bool Box::intersect ( Ray const & ray , float & t )
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
         }
     }
@@ -212,10 +219,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
                 else if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
             }
             else if(distance2<distance1)
@@ -223,10 +232,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
                 else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
             }    
             intersect = true;
@@ -236,6 +247,7 @@ bool Box::intersect ( Ray const & ray , float & t )
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
         }
         if(hitp2)
@@ -243,6 +255,7 @@ bool Box::intersect ( Ray const & ray , float & t )
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
         }
     }

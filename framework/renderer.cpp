@@ -24,22 +24,40 @@ void Renderer::render(Scene& scene, int frame)
   std::size_t const checker_pattern_size = 20;
   Scene scene1;
   
-  
+
   for (int y=0; y < height_; ++y) {
     for (int x = 0; x < width_; ++x) {
       Pixel p(x,y);
-      
-
-
-      glm::vec3 origin{300.0f, 150.0f ,0.0f};
+      float distance = 100;
+      glm::vec3 origin{400.0f, 300.0f ,0.0f};
       glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
-      Ray ray{origin,direction};
+      Ray ray{origin,glm::normalize(direction)};
       
+      if ( ((x/checker_pattern_size)%2) != ((y/checker_pattern_size)%2)) {
+        p.color = Color(1.0, 1.0, 1.0);//float(x)/height_*2);
+      } else {
+        p.color = Color(0.0, 0.0, 0.0); //float(y)/width_*2);*
+      }
+
+      float cam_dist = 20000;
+      //shared_ptr<Shape> nearest_obj;
       
+      for(auto i : scene.shape_vec)
+      {
+        
+        if(i->intersect(ray, distance))
+        {
+          
+          if(cam_dist>distance)
+          {
+            cam_dist = distance;
+          }
+          p.color = i->getMaterial()->ka_;
+        }
+      }
+
+      //p.color = getPixelColor(nearest_obj, ray, scene);
       
-      p.color = getPixelColor(ray, scene, direction.z);
-      
-      p.color = Color(0.5,0.5,0.5);      
 
       write(p);
     }
@@ -48,26 +66,10 @@ void Renderer::render(Scene& scene, int frame)
   ppm_.save(filename_);
 }
 
-Color Renderer::getPixelColor(Ray const& ray, Scene& scene, float dist)
+Color Renderer::getPixelColor(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene)
 {   
-    std::vector<std::shared_ptr<Shape>> intersected;
- 
-    for (auto i : scene.shape_vec)
-    {       
-        if(i->intersect(ray, dist) == true)
-        {
-          intersected.push_back(i);
-          return Color(1,1,1);
-          //return i->getMaterial()->ks_;
-            
-        }
-        else
-        {
-          return Color(0.5,0.5,0.5);
-        }
-      }
     
-  
+    
 }
 
 void Renderer::write(Pixel const& p)

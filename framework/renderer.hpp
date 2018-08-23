@@ -27,7 +27,7 @@ public:
 
   void render(Scene& scene, int frame);
 
-  Color getPixelColor(Ray const& ray, Scene& scene, float dist);
+  Color getPixelColor(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene);
 
   void write(Pixel const& p);
 

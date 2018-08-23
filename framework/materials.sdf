@@ -2,8 +2,9 @@ define material red   1 0 0 1 0 0 1 0 0 20
 define material green 0 1 0 0 1 0 0 1 0 50
 define material blue  0 0 1 0 0 1 0 0 1 10
 
-define shape box b6 100 200 -300 200 400 -500 red
+#define shape sphere s1 400 300 -400 0 red
+ define shape box b3 100 200 -200 400 300 -300 green
+ define shape box b1 200 300 -200 500 400 -300 red
+ define shape box b2 600 400 -250 650 450 -251 blue
 
-#define shape sphere s1 200 100 -400 200 green
-#define shape box b2 100 300 -300 200 350 -500 blue
-#define shape box b1 100 200 -300 500 400 -500 red
+#define light sun 1000 700 0 .2 .2 .2
