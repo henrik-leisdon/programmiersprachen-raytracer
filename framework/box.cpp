@@ -54,7 +54,7 @@ bool Box::intersect ( Ray const & ray , float & t )
     bool intersect = false;
     auto cam_dist = -1;
 
-    if(direction.x!=0)
+   if(direction.x!=0)
     {
         auto t1 = (boxMin_.x-origin.x)/direction.x;  //get t for x min
         auto t2 = (boxMax_.x-origin.x)/direction.x;  //get t for x max
@@ -85,10 +85,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance1>0 && (distance1<cam_dist || cam_dist<0)) //distance1 vorhanden and camist < 0(so box is infront of cam) or cam dist default
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
                 else if(distance2>0 && (distance2<cam_dist || cam_dist<0)) //same like dist 1 just with distance2
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
             }
             else 
@@ -96,10 +98,12 @@ bool Box::intersect ( Ray const & ray , float & t )
                 if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
                 else if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
             }    
             intersect = true;
@@ -109,6 +113,7 @@ bool Box::intersect ( Ray const & ray , float & t )
             if(distance1>0 && (distance1<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance1;
+                    intersect = true;
                 }
         }
         if(hitp2 ) //ray is inside box or hits edge of box
@@ -116,6 +121,7 @@ bool Box::intersect ( Ray const & ray , float & t )
              if(distance2>0 && (distance2<cam_dist || cam_dist<0))
                 {
                     cam_dist=distance2;
+                    intersect = true;
                 }
         }
     }
@@ -261,7 +267,7 @@ bool Box::intersect ( Ray const & ray , float & t )
     }
     t = cam_dist;
     return intersect;
-    
+
 }
 
 
