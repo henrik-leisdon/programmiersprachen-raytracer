@@ -111,7 +111,7 @@ struct Scene
                 {
                     shared_ptr<Material> matsphere = scene.material_map.at(s6);
                     glm::vec3 spMid = glm::vec3{i2, i3, i4};
-                    Sphere sphere_o = Sphere(spMid,i4,s1,matsphere);
+                    Sphere sphere_o = Sphere(spMid,i5,s1,matsphere);
                   
                   std::shared_ptr<Sphere>spherep = std::make_shared<Sphere>(sphere_o);
                   scene.shape_vec.push_back(spherep);
