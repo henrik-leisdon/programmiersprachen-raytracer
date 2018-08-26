@@ -28,12 +28,12 @@ void Renderer::render(Scene& scene, int frame)
   for (int y=0; y < height_; ++y) {
     for (int x = 0; x < width_; ++x) {
       Pixel p(x,y);
-      double d = (width_ / 2) / tan(51.5 / 2 * M_PI / 180);
+      //double d = (width_ / 2) / tan(51.5 / 2 * M_PI / 180);
       
       float distance = 100;
       glm::vec3 origin{400.0f, 300.0f ,0.0f};
       glm::vec3 direction{x-origin.x,y-origin.y, -100.0f};
-      direction = direction + glm::vec3{ x - (0.5 * width_),y - (0.5 * height_),d};
+      //direction = direction + glm::vec3{ x - (0.5 * width_),y - (0.5 * height_),d};
       Ray ray{origin,glm::normalize(direction)};
       
       if ( ((x/checker_pattern_size)%2) != ((y/checker_pattern_size)%2)) {
