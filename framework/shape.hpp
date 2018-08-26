@@ -23,7 +23,7 @@ class Shape
         virtual double area() const = 0;
         virtual double volume() const = 0;
 
-        virtual bool intersect ( Ray const & ray , float & t ) = 0; //task 6.3
+        virtual bool intersect ( Ray const & ray , float & t, glm::vec3& normvec) = 0; //task 6.3
 
         virtual std::ostream& print (std::ostream& os) const;
 

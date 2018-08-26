@@ -46,8 +46,17 @@ double Box::volume() const
     return (boxMax_.x-boxMin_.x)*(boxMax_.y-boxMin_.y)*(boxMax_.z-boxMin_.z);
 }
 
+glm::vec3 calcNormal(glm::vec3 boxMin, glm::vec3 boxMax){
+    glm::vec3 normvec;
 
-bool Box::intersect ( Ray const & ray , float & t )
+    normvec.x = boxMin.y * boxMax.z - boxMin.z * boxMin.y;
+    normvec.y = boxMin.z * boxMax.x - boxMin.x * boxMax.z;
+    normvec.z = boxMin.x * boxMax.y - boxMin.y * boxMax.x;
+
+    return normvec;
+}
+
+bool Box::intersect ( Ray const & ray , float & t , glm::vec3& normvec)
 {
     auto origin = ray.origin;
     auto direction = ray.direction; 
@@ -265,6 +274,8 @@ bool Box::intersect ( Ray const & ray , float & t )
                 }
         }
     }
+    glm::vec3 normvec = calcNormal(boxMin_, boxMax_);
+
     t = cam_dist;
     return intersect;
 
