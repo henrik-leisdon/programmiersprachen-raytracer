@@ -23,6 +23,7 @@ void Renderer::render(Scene& scene, int frame)
 {
   std::size_t const checker_pattern_size = 20;
   Scene scene1;
+  glm::vec3 normvec;
   
 
   for (int y=0; y < height_; ++y) {
@@ -48,7 +49,7 @@ void Renderer::render(Scene& scene, int frame)
       for(auto i : scene.shape_vec)
       {
         
-        if(i->intersect(ray, distance, ))
+        if(i->intersect(ray, distance, normvec))
         {
           
           if(cam_dist>distance)
@@ -57,7 +58,7 @@ void Renderer::render(Scene& scene, int frame)
             i = nearest_obj;
             glm::vec3 cut_p = glm::vec3(ray.origin.x+cam_dist*ray.direction.x, ray.origin.y+cam_dist*ray.direction.y, ray.origin.z+cam_dist*ray.direction.z);
             
-            Hit hitp(true, cam_dist, cut_p, norm_v, nearest_obj->getMaterial, "first");
+            Hit hitp(true, cam_dist, cut_p, normvec, nearest_obj->getMaterial, "first");
 
 
 

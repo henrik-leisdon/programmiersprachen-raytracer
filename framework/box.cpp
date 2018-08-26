@@ -56,7 +56,7 @@ glm::vec3 calcNormal(glm::vec3 boxMin, glm::vec3 boxMax){
     return normvec;
 }
 
-bool Box::intersect ( Ray const & ray , float & t , glm::vec3& normvec)
+bool Box::intersect( Ray const & ray , float & t , glm::vec3& normvec)
 {
     auto origin = ray.origin;
     auto direction = ray.direction; 

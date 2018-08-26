@@ -21,7 +21,7 @@ class Box : public Shape
 
         glm::vec3 calcNormal(glm::vec3 boxMin, glm::vec3 boxMax);
 
-        bool intersect(Ray const& ray, float& t, glm::vec3& normvec) override; //override pure virtual intersect function from shape 
+        bool intersect( Ray const & ray , float & t , glm::vec3& normvec) override; //override pure virtual intersect function from shape 
 
         std::ostream& print(std::ostream& os) const override;
 
