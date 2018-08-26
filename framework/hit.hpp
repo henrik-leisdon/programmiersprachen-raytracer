@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include "ray.hpp"
-#include <mat4x4.hpp>
+#include <glm/mat4x4.hpp>
 #include <glm/glm.hpp>
 
 class Hit {

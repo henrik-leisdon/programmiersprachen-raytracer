@@ -19,7 +19,7 @@ class Sphere : public Shape
         double area() const override;
         double volume() const override;
 
-        bool intersect ( Ray const & ray , float & t ) override;
+        bool intersect( Ray const & ray , float & t , glm::vec3& normvec) override;
 
 
         std::ostream& print (std::ostream& os ) const override;
