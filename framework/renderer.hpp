@@ -11,6 +11,7 @@
 #define BUW_RENDERER_HPP
 
 #include "color.hpp"
+#include "hit.hpp"
 #include "pixel.hpp"
 #include "ppmwriter.hpp"
 #include <string>
@@ -18,6 +19,7 @@
 #include <glm/vec3.hpp>
 #include "scene.hpp"
 #include "ray.hpp"
+#include <cmath>
 
 
 class Renderer
@@ -27,6 +29,8 @@ public:
 
   void render(Scene& scene, int frame);
 
+  Color calc_reflection(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene);
+
   Color getPixelColor(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene);
 
   void write(Pixel const& p);
@@ -35,6 +39,8 @@ public:
   {
     return color_buffer_;
   }
+
+  Color shadow(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene);
 
 private:
   unsigned width_;

@@ -43,21 +43,30 @@ void Renderer::render(Scene& scene, int frame)
       }
 
       float cam_dist = 20000;
-      //shared_ptr<Shape> nearest_obj;
+      shared_ptr<Shape> nearest_obj;
       
       for(auto i : scene.shape_vec)
       {
         
-        if(i->intersect(ray, distance))
+        if(i->intersect(ray, distance, ))
         {
           
           if(cam_dist>distance)
           {
             cam_dist = distance;
+            i = nearest_obj;
+            glm::vec3 cut_p = glm::vec3(ray.origin.x+cam_dist*ray.direction.x, ray.origin.y+cam_dist*ray.direction.y, ray.origin.z+cam_dist*ray.direction.z);
+            
+            Hit hitp(true, cam_dist, cut_p, norm_v, nearest_obj->getMaterial, "first");
+
+
+
           }
           p.color = i->getMaterial()->ka_;
         }
       }
+
+
 
       //p.color = getPixelColor(nearest_obj, ray, scene);
       
@@ -69,11 +78,19 @@ void Renderer::render(Scene& scene, int frame)
   ppm_.save(filename_);
 }
 
-Color Renderer::getPixelColor(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene)
+Color Renderer::getPixelColor(std::shared_ptr<Shape> nearest_obj, Ray& ray, Scene& scene)
 {   
     
     
 }
+
+/*Color Renderer::shadow(std::shared_ptr<Shape> Object, Ray& ray, Scene& scene){
+    color.r += mat.kd_.r * (*it).ld_.r * (glm::dot(camHit.normvec_, lightRay.direction) + mat.ks_.r * r_v_);
+    color.g += mat.kd_.g * (*it).ld_.g * (glm::dot(camHit.normvec_, lightRay.direction) + mat.ks_.g * r_v_);
+    color.b += mat.kd_.b * (*it).ld_.b * (glm::dot(camHit.normvec_, lightRay.direction) + mat.ks_.b * r_v_);
+            
+}*/
+
 
 void Renderer::write(Pixel const& p)
 {
