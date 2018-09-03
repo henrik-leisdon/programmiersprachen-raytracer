@@ -55,11 +55,11 @@ void Renderer::render(Scene& scene, int frame)
           if(cam_dist>distance)
           {
             cam_dist = distance;
-            i = nearest_obj;
+            nearest_obj = i;
             glm::vec3 cut_p = glm::vec3(ray.origin.x+cam_dist*ray.direction.x, ray.origin.y+cam_dist*ray.direction.y, ray.origin.z+cam_dist*ray.direction.z);
             bool hitbool = true;
             //Hit hitp = Hit(hitbool, cam_dist, cut_p, norm_vec, nearest_obj->getMaterial, "first");
-            
+
 
 
           }
